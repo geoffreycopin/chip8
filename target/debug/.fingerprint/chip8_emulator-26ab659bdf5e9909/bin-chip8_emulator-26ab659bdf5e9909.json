@@ -1,0 +1,1 @@
+{"rustc":4170047237237902413,"features":"[]","target":17686948790303558888,"profile":11056616118474686352,"path":1036222786711178230,"deps":[["sdl2 v0.31.0",15996936432957958667]],"local":[{"MtimeBased":[[1529570640,920160385],".fingerprint/chip8_emulator-26ab659bdf5e9909/dep-bin-chip8_emulator-26ab659bdf5e9909"]}],"rustflags":[],"epoch":"Epoch2015"}
