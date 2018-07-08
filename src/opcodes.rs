@@ -26,7 +26,7 @@ pub enum Op {
     Skp(u8),
     Sknp(u8),
     LdDT(u8),
-    LdKB(u8),
+    LdKb(u8),
     SetDT(u8),
     SetST(u8),
     AddToI(u8),
@@ -74,7 +74,7 @@ pub fn decode(opcode: u16) -> Op {
         (0xE, x, 0x9, 0xE) => Op::Skp(x),
         (0xE, x, 0xA, 0x1) => Op::Sknp(x),
         (0xF, x, 0x0, 0x7) => Op::LdDT(x),
-        (0xF, x, 0x0, 0xA) => Op::LdKB(x),
+        (0xF, x, 0x0, 0xA) => Op::LdKb(x),
         (0xF, x, 0x1, 0x5) => Op::SetDT(x),
         (0xF, x, 0x1, 0x8) => Op::SetST(x),
         (0xF, x, 0x1, 0xE) => Op::AddToI(x),
@@ -231,7 +231,7 @@ mod test {
 
     #[test]
     fn ld_kb() {
-        assert_eq!(Op::LdKB(0x09), decode(0xF90A))
+        assert_eq!(Op::LdKb(0x09), decode(0xF90A))
     }
 
     #[test]

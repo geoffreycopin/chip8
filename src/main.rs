@@ -1,7 +1,8 @@
-extern crate sdl2;
 extern crate rand;
+extern crate sdl2;
 
 mod cpu;
+mod keypad;
 mod opcodes;
 mod screen;
 
