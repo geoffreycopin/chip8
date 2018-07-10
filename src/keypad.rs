@@ -45,7 +45,7 @@ impl KeyPad {
         self.pressed = pressed
             .filter_map(|code| self.maping.get(&code))
             .cloned()
-            .collect()
+            .collect();
     }
 
     pub fn is_pressed(&self, num: u8) -> bool {

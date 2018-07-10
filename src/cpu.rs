@@ -1,4 +1,4 @@
-use super::{opcodes::Op, screen::Screen, keypad::KeyPad};
+use super::{opcodes::*, screen::Screen, keypad::KeyPad};
 
 use std::u16;
 
@@ -27,14 +27,14 @@ const DIGIT_SPRITES: [u8; 80] = [
 
 pub struct Cpu {
     v: [u8; 16],
-    i: u16,
+    pub i: u16,
     sound_timer: u8,
     delay_timer: u8,
     stack: [u16; 16],
     pc: usize,
     sp: usize,
     memory: [u8; MEM_SIZE],
-    screen: Screen,
+    pub screen: Screen,
 }
 
 impl Cpu {
@@ -56,8 +56,39 @@ impl Cpu {
         cpu
     }
 
+    pub fn cycle(&mut self, keypad: &KeyPad) {
+        //eprintln!("self.delay_timer = {:#?}", self.delay_timer);
+        let op = self.fetch_opcode();
+        self.pc += 2;
+        self.compute_op(op, keypad);
+    }
+
+    fn fetch_opcode(&self) -> Op {
+        let addr = self.pc as usize;
+        let data = (self.memory[addr] as u16) << 8 | (self.memory[addr + 1]) as u16;
+        decode(data)
+    }
+
+    pub fn load_program(&mut self, program: &[u8]) -> Result<(), String> {
+        if program.len() > MEM_SIZE - 0x200 {
+            return Err("Program is too big !".to_string());
+        }
+        self.memory[0x200..].iter_mut().zip(program)
+            .for_each(|(dst, src)| *dst = *src);
+        Ok(())
+    }
+
+    pub fn update_timers(&mut self) {
+        self.delay_timer = self.delay_timer.saturating_sub(1);
+        self.sound_timer = self.sound_timer.saturating_sub(1);
+    }
+
+    fn reg<T: Into<usize>>(&self, register: T) -> u8 {
+        self.v[register.into()]
+    }
 
     fn compute_op(&mut self, op: Op, key_pad: &KeyPad) {
+        eprintln!("op = {:#?}", op);
         match op {
             Op::Cls => self.screen.clear(),
             Op::Ret => self.return_from_subroutine(),
@@ -86,21 +117,14 @@ impl Cpu {
             Op::Sknp(key) => self.skip_if_not_pressed(key, key_pad),
             Op::LdDT(reg) => self.v[reg as usize] = self.delay_timer,
             Op::LdKb(reg) => self.wait_key_press(reg, &key_pad),
-            Op::SetDT(reg) => self.delay_timer = self.v[reg as usize],
-            Op::SetST(reg) => self.sound_timer = self.v[reg as usize],
+            Op::SetDT(reg) => self.delay_timer = self.reg(reg),
+            Op::SetST(reg) => self.sound_timer = self.reg(reg),
             Op::AddToI(reg) => self.add_reg_to_i(reg),
             Op::LdChr(reg) => self.load_chr_sprite_addr(reg),
             Op::LdBCD(reg) => self.load_bcd(reg),
             Op::LdRegs(x) => self.load_registers(x),
+            Op::RdMem(x) => self.read_memory(x),
             _ => panic!("Not supported !")
-        }
-        self.update_pc(op);
-    }
-
-    fn update_pc(&mut self, previous_op: Op) {
-        match previous_op {
-            Op::Ret | Op::Jp(..) | Op::Call(..) |Op::JpRegI(..) => (),
-            _ => self.pc += 2
         }
     }
 
@@ -125,25 +149,25 @@ impl Cpu {
     }
 
     fn skip_equals(&mut self, reg: u8, v2: u8) {
-        if self.v[reg as usize] as u8 == v2 {
+        if self.reg(reg) == v2 {
             self.pc += 2
         }
     }
 
     fn skip_not_equals(&mut self, reg: u8, v2: u8) {
-        if self.v[reg as usize] as u8 != v2 {
+        if self.reg(reg) != v2 {
             self.pc += 2
         }
     }
 
     fn skip_reg_equals(&mut self, r1: u8, r2: u8) {
-        if self.v[r1 as usize] == self.v[r2 as usize] {
+        if self.reg(r1) == self.reg(r2) {
             self.pc += 2
         }
     }
 
     fn skip_reg_not_equals(&mut self, r1: u8, r2: u8) {
-        if self.v[r1 as usize] != self.v[r2 as usize] {
+        if self.reg(r1) != self.reg(r2) {
             self.pc += 2
         }
     }
@@ -153,7 +177,7 @@ impl Cpu {
     }
 
     fn add(&mut self, register: u8, val: u8) {
-        self.v[register as usize] += val;
+        self.v[register as usize] = self.v[register as usize].wrapping_add(val);
     }
 
     fn load_reg(&mut self, r1: u8, r2: u8) {
@@ -203,7 +227,10 @@ impl Cpu {
         self.v[reg as usize] = random_val;
     }
 
-    fn draw(&mut self, x: u8, y: u8, size: u8) {
+    pub fn draw(&mut self, x: u8, y: u8, size: u8) {
+        let x = self.reg(x);
+        let y = self.reg(y);
+
         let address = self.i as usize;
         let sprite = &self.memory[address.. address + size as usize];
         self.v[0xF] = 0;
@@ -212,9 +239,11 @@ impl Cpu {
             for offset in 0..8 {
                 let screen_x = x as usize + offset as usize;
                 let screen_y = y as usize + line;
-                let on = (byte & (128 >> offset)) == 1;
-                if self.screen.set_pixel_value(screen_x, screen_y, on) {
-                    self.v[0xF] = 1;
+                if screen_x < 64 && screen_y < 32 {
+                    let on = (byte & (128 >> offset)) != 0;
+                    if self.screen.set_pixel_value(screen_x, screen_y, on) {
+                        //self.v[0xF] = 1;
+                    }
                 }
             }
         }
@@ -227,7 +256,7 @@ impl Cpu {
     }
 
     fn skip_if_not_pressed(&mut self, key: u8, pad: &KeyPad) {
-        if ! pad.is_pressed(key) {
+        if !pad.is_pressed(key) {
             self.pc += 2;
         }
     }
@@ -274,21 +303,17 @@ impl Cpu {
         }
     }
 
-    pub fn load_program(&mut self, program: &[u8]) -> Result<(), String> {
-        if program.len() > MEM_SIZE - 0x200 {
-            return Err("Program is too big !".to_string());
+    fn read_memory(&mut self, x: u8) {
+        let x = x as usize;
+        if x > 0xF {
+            panic!("Register {} doesn't exist.", x);
         }
-        self.memory[0x200..].copy_from_slice(program);
-        Ok(())
-    }
-
-    fn update_timers(&mut self) {
-        self.delay_timer = self.delay_timer.saturating_sub(1);
-        self.sound_timer = self.sound_timer.saturating_sub(1);
-    }
-
-    fn reg<T: Into<usize>>(&self, register: T) -> u8 {
-        self.v[register.into()]
+        if self.i as usize + x >= MEM_SIZE {
+            panic!("Cannot read {} bytes from memory address {}.", x + 1, self.i);
+        }
+        for off in 0..=x {
+            self.v[off] = self.memory[self.i as usize + off];
+        }
     }
 }
 
@@ -333,6 +358,26 @@ mod test {
         cpu.update_timers();
         assert_eq!(0, cpu.sound_timer);
         assert_eq!(0, cpu.delay_timer);
+    }
+
+    #[test]
+    fn load_program() {
+        let program = [0x00, 0xE0, 0x00, 0xEE];
+        let mut cpu = Cpu::new();
+        cpu.load_program(&program);
+        assert_eq!(0x00, cpu.memory[0x200]);
+        assert_eq!(0xE0, cpu.memory[0x201]);
+        assert_eq!(0x00, cpu.memory[0x202]);
+        assert_eq!(0xEE, cpu.memory[0x203]);
+    }
+
+    #[test]
+    fn read_opcode() {
+        let program = [0x00, 0xE0, 0x00, 0xEE];
+        let mut cpu = Cpu::new();
+        cpu.load_program(&program);
+        let op = cpu.fetch_opcode();
+        assert_eq!(Op::Cls, op);
     }
 
     #[test]
@@ -393,7 +438,7 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.v[1] = 5;
         cpu.compute_op(Op::Se(1, 5), &KeyPad::new());
-        assert_eq!(0x204, cpu.pc);
+        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -401,7 +446,7 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.v[1] = 5;
         cpu.compute_op(Op::Se(1, 6), &KeyPad::new());
-        assert_eq!(0x202, cpu.pc);
+        assert_eq!(0x200, cpu.pc);
     }
 
     #[test]
@@ -409,7 +454,7 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.v[1] = 5;
         cpu.compute_op(Op::Sne(1, 6), &KeyPad::new());
-        assert_eq!(0x204, cpu.pc);
+        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -417,7 +462,7 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.v[1] = 5;
         cpu.compute_op(Op::Sne(1, 5), &KeyPad::new());
-        assert_eq!(0x202, cpu.pc);
+        assert_eq!(0x200, cpu.pc);
     }
 
     #[test]
@@ -426,7 +471,7 @@ mod test {
         cpu.v[0] = 5;
         cpu.v[5] = 5;
         cpu.compute_op(Op::SeReg(0, 5), &KeyPad::new());
-        assert_eq!(0x204, cpu.pc);
+        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -435,7 +480,6 @@ mod test {
         cpu.v[0] = 5;
         cpu.v[5] = 6;
         cpu.compute_op(Op::SeReg(0, 5), &KeyPad::new());
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -444,7 +488,6 @@ mod test {
         cpu.v[0] = 5;
         cpu.v[5] = 6;
         cpu.compute_op(Op::SneReg(0, 5), &KeyPad::new());
-        assert_eq!(0x204, cpu.pc);
     }
 
     #[test]
@@ -453,7 +496,6 @@ mod test {
         cpu.v[0] = 5;
         cpu.v[5] = 5;
         cpu.compute_op(Op::SneReg(0, 5), &KeyPad::new());
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -461,7 +503,6 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.compute_op(Op::Ld(6, 124), &KeyPad::new());
         assert_eq!(124, cpu.v[6]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -470,7 +511,6 @@ mod test {
         cpu.v[9] = 10;
         cpu.compute_op(Op::Add(9, 10), &KeyPad::new());
         assert_eq!(20, cpu.v[9]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -479,7 +519,6 @@ mod test {
         cpu.v[5] = 11;
         cpu.compute_op(Op::LdReg(1, 5), &KeyPad::new());
         assert_eq!(11, cpu.v[1]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -489,7 +528,6 @@ mod test {
         cpu.v[0xB] = 0b01010;
         cpu.compute_op(Op::Or(0xA, 0xB), &KeyPad::new());
         assert_eq!(0b11110, cpu.v[0xA]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -499,7 +537,6 @@ mod test {
         cpu.v[4] = 0b01110;
         cpu.compute_op(Op::And(3, 4), &KeyPad::new());
         assert_eq!(0b00010, cpu.v[3]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -509,7 +546,6 @@ mod test {
         cpu.v[1] = 0b101;
         cpu.compute_op(Op::Xor(0, 1), &KeyPad::new());
         assert_eq!(0b011, cpu.v[0]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -520,7 +556,6 @@ mod test {
         cpu.compute_op(Op::AddReg(1, 2), &KeyPad::new());
         assert_eq!(11, cpu.v[1]);
         assert_eq!(0, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -531,7 +566,6 @@ mod test {
         cpu.compute_op(Op::AddReg(1, 2), &KeyPad::new());
         assert_eq!(0, cpu.v[1]);
         assert_eq!(1, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -542,7 +576,6 @@ mod test {
         cpu.compute_op(Op::Sub(2, 1), &KeyPad::new());
         assert_eq!(1, cpu.v[2]);
         assert_eq!(1, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -553,7 +586,6 @@ mod test {
         cpu.compute_op(Op::Sub(1, 2), &KeyPad::new());
         assert_eq!(6, cpu.v[2]);
         assert_eq!(0, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -563,7 +595,6 @@ mod test {
         cpu.compute_op(Op::Shr(6), &KeyPad::new());
         assert_eq!(0b011, cpu.v[6]);
         assert_eq!(0, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -573,7 +604,6 @@ mod test {
         cpu.compute_op(Op::Shr(6), &KeyPad::new());
         assert_eq!(0b010, cpu.v[6]);
         assert_eq!(1, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -584,7 +614,6 @@ mod test {
         cpu.compute_op(Op::Subn(1, 2), &KeyPad::new());
         assert_eq!(1, cpu.v[2]);
         assert_eq!(1, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -595,7 +624,6 @@ mod test {
         cpu.compute_op(Op::Subn(2, 1), &KeyPad::new());
         assert_eq!(6, cpu.v[2]);
         assert_eq!(0, cpu.v[0xF]);
-        assert_eq!(0x202, cpu.pc);
     }
 
     #[test]
@@ -637,7 +665,7 @@ mod test {
         let mut pad = KeyPad::new();
         pad.update(vec![Scancode::X].into_iter());
         cpu.compute_op(Op::Skp(0), &pad);
-        assert_eq!(0x204, cpu.pc)
+        assert_eq!(0x202, cpu.pc)
     }
 
     #[test]
@@ -646,7 +674,7 @@ mod test {
         let mut pad = KeyPad::new();
         pad.update(vec![Scancode::X].into_iter());
         cpu.compute_op(Op::Skp(1), &pad);
-        assert_eq!(0x202, cpu.pc)
+        assert_eq!(0x200, cpu.pc)
     }
 
     #[test]
@@ -655,7 +683,7 @@ mod test {
         let mut pad = KeyPad::new();
         pad.update(vec![Scancode::X].into_iter());
         cpu.compute_op(Op::Sknp(1), &pad);
-        assert_eq!(0x204, cpu.pc)
+        assert_eq!(0x202, cpu.pc)
     }
 
     #[test]
@@ -664,7 +692,7 @@ mod test {
         let mut pad = KeyPad::new();
         pad.update(vec![Scancode::X].into_iter());
         cpu.compute_op(Op::Sknp(0), &pad);
-        assert_eq!(0x202, cpu.pc)
+        assert_eq!(0x200, cpu.pc)
     }
 
     #[test]
@@ -681,10 +709,14 @@ mod test {
         let mut kb = KeyPad::new();
 
         cpu.compute_op(Op::LdKb(5), &kb);
+        // simulate pc update during full cycle
+        cpu.pc += 2;
         assert_eq!(0x200, cpu.pc);
         assert_eq!(0, cpu.v[5]);
         kb.update(vec![Scancode::W].into_iter());
         cpu.compute_op(Op::LdKb(5), &kb);
+        // simulate pc update during full cycle
+        cpu.pc += 2;
         assert_eq!(0xA, cpu.v[5]);
         assert_eq!(0x202, cpu.pc);
     }
@@ -770,5 +802,27 @@ mod test {
         let mut cpu = Cpu::new();
         cpu.i = MEM_SIZE as u16 - 1;
         cpu.compute_op(Op::LdRegs(1), &KeyPad::new());
+    }
+
+    #[test]
+    fn read_memory() {
+        let mut cpu = Cpu::new();
+        cpu.memory[0x200] = 1;
+        cpu.memory[0x201] = 2;
+        cpu.memory[0x202] = 3;
+        cpu.memory[0x203] = 4;
+        cpu.compute_op(Op::RdMem(3), &KeyPad::new());
+        assert_eq!(1, cpu.v[0]);
+        assert_eq!(2, cpu.v[1]);
+        assert_eq!(3, cpu.v[2]);
+        assert_eq!(4, cpu.v[3]);
+    }
+
+    #[test]
+    #[should_panic]
+    fn read_memory_overflow() {
+        let mut cpu = Cpu::new();
+        cpu.i = MEM_SIZE as u16 - 1;
+        cpu.compute_op(Op::RdMem(1), &KeyPad::new());
     }
 }

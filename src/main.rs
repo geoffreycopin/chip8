@@ -6,11 +6,18 @@ mod keypad;
 mod opcodes;
 mod screen;
 
+use sdl2::{event::Event, rect, render::Canvas, video::Window, keyboard::KeyboardState};
+
 use screen::Screen;
 
-use sdl2::{event::Event, rect, render::Canvas, video::Window};
+use std::{
+    io::prelude::*,
+    fs::File,
+    thread::sleep,
+    time::Duration,
+};
 
-fn main() {
+fn main() -> std::io::Result<()> {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
 
@@ -23,28 +30,46 @@ fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
+    let mut rom = File::open("roms/pong.rom")?;
+    let mut rom_data = [0u8; 3584];
+    rom.read(&mut rom_data);
+
+    let mut c = cpu::Cpu::new();
+    c.load_program(&rom_data);
+
+    let mut k = keypad::KeyPad::new();
+
     let mut event_pump = sdl_context.event_pump().unwrap();
     'running: loop {
-        let mut s = screen::Screen::new();
-        s.turn_on(0, 0);
-        s.turn_on(0, 1);
-        s.turn_on(1, 1);
-        s.turn_on(63, 31);
-        canvas.set_draw_color(sdl2::pixels::Color::RGB(255, 255, 255));
-        draw_screen(&mut canvas, &s);
+        k.update(KeyboardState::new(&event_pump).pressed_scancodes());
+
+        c.cycle(&keypad::KeyPad::new());
+        c.cycle(&keypad::KeyPad::new());
+        c.cycle(&keypad::KeyPad::new());
+        c.cycle(&keypad::KeyPad::new());
+        c.update_timers();
+        draw_screen(&mut canvas, &c.screen);
         canvas.present();
         for event in event_pump.poll_iter() {
             match event {
-                Event::Quit { .. } | Event::KeyDown { .. } => break 'running,
+                Event::Quit { .. } => break 'running,
                 _ => (),
             }
         }
+        sleep(Duration::from_millis(16));
     }
+
+    Ok(())
 }
 
 fn draw_screen(canvas: &mut Canvas<Window>, screen: &Screen) {
+    canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
+    canvas.clear();
+    canvas.set_draw_color(sdl2::pixels::Color::RGB(255, 255, 255));
+
     let (width, height) = canvas.output_size().unwrap();
     let (pixel_width, pixel_height) = (width / 64, height / 32);
+
     screen.pixels().filter(|p| p.on()).for_each(|p| {
         let x = p.x() * pixel_width as usize;
         let y = p.y() * pixel_height as usize;

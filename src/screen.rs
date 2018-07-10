@@ -55,9 +55,10 @@ impl Screen {
     pub fn set_pixel_value(&mut self, x: usize, y: usize, on: bool) -> bool {
         let index = ((y % 32) * 64) + (x % 64);
         if on && self.pixels[index].on  {
+            self.pixels[index].on = false;
             return true
         } else {
-            self.pixels[index].on = on;
+            self.pixels[index].on = self.pixels[index].on || on;
             return false
         }
     }

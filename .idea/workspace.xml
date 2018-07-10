@@ -1,69 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="false">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="43984122-6ba5-46ec-8e96-5830702cdf51" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/keypad.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/15puzzle.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/BC_test.ch8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/blinky.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/blitz.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/breakout.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/brix.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/connect4.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/guess.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/hidden.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/invaders.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/kaleid.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/maze.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/merlin.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/missile.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/pong.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/pong2.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/puzzle.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/15PUZZLE.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/BLINKY.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/BREAKOUT.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/BRIX.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/MAZE.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/PONG.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/PONG2.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/SYZYGY.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/UFO.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/sources/VBRIX.SRC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/squash.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/syzygy.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/tank.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/tetris.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/tictac.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/ufo.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/vbrix.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/vers.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/wall.rom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roms/wipeoff.rom" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpu.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpu.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keypad.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/keypad.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/opcodes.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/opcodes.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/dep-test-bin-chip8_emulator-b026b99326e7add6" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/dep-test-bin-chip8_emulator-b026b99326e7add6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/test-bin-chip8_emulator-b026b99326e7add6" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/test-bin-chip8_emulator-b026b99326e7add6" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/test-bin-chip8_emulator-b026b99326e7add6.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/.fingerprint/chip8_emulator-b026b99326e7add6/test-bin-chip8_emulator-b026b99326e7add6.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/debug/chip8_emulator" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/chip8_emulator" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/debug/chip8_emulator-b026b99326e7add6" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/chip8_emulator-b026b99326e7add6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/chip8_emulator-b026b99326e7add6.d" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/chip8_emulator-b026b99326e7add6.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/debug/chip8_emulator.d" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/chip8_emulator.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/debug/chip8_emulator.dSYM" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/chip8_emulator.dSYM" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6.d" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6.dSYM/Contents/Resources/DWARF/chip8_emulator-b026b99326e7add6" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/deps/chip8_emulator-b026b99326e7add6.dSYM/Contents/Resources/DWARF/chip8_emulator-b026b99326e7add6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/16u6js6g0l3k1ic6.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/181cuta0v63atwcm.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1ca4zz4e4zskwx3q.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1e189we45qsd1mes.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1haxr16a05n65r88.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1im38lueib99jsk0.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1lxj7zjxpbxtjojd.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1tbvr8uqoatkybj9.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1y16o1qfye96o7m0.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/1zhp5c1kd23ueiac.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/23tqyymcb18u96mb.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/2d7dgg3bdpamtagv.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/2jqywn86b2gsqohu.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/2lyh15q6cjwzy18c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/2wixplf1qzszxq14.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/2xs38k3nu4oe9uo6.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/35dif2yfqvun9jag.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/38ps4pa181wsnsy9.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/3ayaeypdcro9d6yk.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/3resa6p8u3uk4v0j.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/3rngp6bm2u2q5z0y.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/3tyebtebkypinokh.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/43v6g0y2xsxoggnt.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/48x5gh4gogr2viq.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/49a7n47po4ttqjl7.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/49lx1q7cxvpykyv0.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/4o6noeqw9sn9wc8o.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/4oc10dk278mpk1vy.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/4xq48u46a1pwiqn7.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/4yh8x2b62dcih00t.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/4ypvbwho0bu5tnww.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/51s1w397y42gpez1.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/592fpwl95835h49g.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/8xzrsc1ux72v29j.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/9elsx31vb4it187.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/dep-graph.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/doar5ife0jn9b6h.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/mz7vgmcf23rofcc.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/oa3rad818d8sgn4.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/qd2493rqu56p09d.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/query-cache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/whfx6u5nhnejm3f.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/work-products.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/y08g5q2x813c4wx.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/z6acewv1yqshpol.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp-14x6t6jfqthrd/z9ox7biyn1otfln.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/incremental/chip8_emulator-2ajljery329zn/s-f2evfi4has-1ryadgp.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/debug/libchip8_emulator.d" beforeDir="false" afterPath="$PROJECT_DIR$/target/debug/libchip8_emulator.d" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -76,41 +72,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cpu.rs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cpu.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding>
-                <element signature="n#test#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.rs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.rs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cargo.toml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cargo.toml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="opcodes.rs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/opcodes.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="82" column="37" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+            <state relative-caret-position="103">
+              <caret line="58" column="8" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -118,8 +84,46 @@
       <file leaf-file-name="keypad.rs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/keypad.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+            <state relative-caret-position="705">
+              <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UFO.SRC" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/roms/sources/UFO.SRC">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="cpu.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cpu.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+              <folding>
+                <element signature="e#5452#5453#0" expanded="true" />
+                <element signature="e#5499#5500#0" expanded="true" />
+                <element signature="e#5641#5642#0" expanded="true" />
+                <element signature="e#5691#5692#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="screen.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/screen.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="opcodes.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/opcodes.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -130,6 +134,17 @@
     <findStrings>
       <find>y</find>
       <find>Shl</find>
+      <find>load_program</find>
+      <find>Op::</find>
+      <find>self.pc</find>
+      <find>kb</find>
+      <find>Dr</find>
+      <find>Add</find>
+      <find>HEY</find>
+      <find>Se</find>
+      <find>op = rdmem</find>
+      <find>lddT</find>
+      <find>SetDT</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,12 +162,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/screen.rs" />
-        <option value="$PROJECT_DIR$/src/opcodes.rs" />
-        <option value="$PROJECT_DIR$/src/keypad.rs" />
         <option value="$PROJECT_DIR$/Cargo.toml" />
-        <option value="$PROJECT_DIR$/src/main.rs" />
+        <option value="$PROJECT_DIR$/src/opcodes.rs" />
+        <option value="$PROJECT_DIR$/src/screen.rs" />
+        <option value="$PROJECT_DIR$/src/keypad.rs" />
         <option value="$PROJECT_DIR$/src/cpu.rs" />
+        <option value="$PROJECT_DIR$/src/main.rs" />
       </list>
     </option>
   </component>
@@ -165,7 +180,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="709" />
@@ -176,6 +191,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -186,24 +203,44 @@
             <path>
               <item name="chip8_emulator" type="b2602c69:ProjectViewProjectNode" />
               <item name="chip8_emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="roms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chip8_emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chip8_emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="roms" type="462c0819:PsiDirectoryNode" />
+              <item name="sources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chip8_emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chip8_emulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="org.rust.cargo.project.configurable.RustProjectConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roms" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -217,16 +254,24 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.Test">
+  <component name="RunManager" selected="Cargo Command.Run chip8_emulator (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
+    <configuration name="Run chip8_emulator (1)" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run --package chip8_emulator --bin chip8_emulator --release" />
+      <option name="nocapture" value="true" />
+      <option name="backtrace" value="FULL" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+    </configuration>
     <configuration name="Run chip8_emulator" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
-      <option name="command" value="run --package chip8_emulator --bin chip8_emulator" />
+      <option name="command" value="run" />
       <option name="nocapture" value="true" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -281,9 +326,11 @@
     <list>
       <item itemvalue="Cargo Command.Test" />
       <item itemvalue="Cargo Command.Run chip8_emulator" />
+      <item itemvalue="Cargo Command.Run chip8_emulator (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Run chip8_emulator (1)" />
         <item itemvalue="Cargo Command.Run chip8_emulator" />
       </list>
     </recent_temporary>
@@ -324,15 +371,27 @@
       <workItem from="1530872957251" duration="178000" />
       <workItem from="1530888858278" duration="2585000" />
       <workItem from="1530991779633" duration="1110000" />
-      <workItem from="1531068110594" duration="2081000" />
+      <workItem from="1531068110594" duration="4876000" />
+      <workItem from="1531119828902" duration="3233000" />
+      <workItem from="1531123191088" duration="52000" />
+      <workItem from="1531211161833" duration="9787000" />
+      <workItem from="1531221845634" duration="152000" />
     </task>
+    <task id="LOCAL-00001" summary="All opcodes implemented">
+      <created>1531070338275</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1531070338275</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56477000" />
+    <option name="totallyTimeSpent" value="73280000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="709" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="709" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="7" />
@@ -344,34 +403,44 @@
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32913387" />
       <window_info anchor="right" id="Maven Projects" order="2" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.43779528" />
-      <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.7322835" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.43779528" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32913387" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.26171875" />
-      <window_info anchor="bottom" id="Statistic" order="2" weight="0.32598424" />
+      <window_info content_ui="combo" id="Project" order="4" visible="true" weight="0.26171875" />
+      <window_info anchor="bottom" id="Statistic" order="2" weight="0.32440946" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="9" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32967034" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32967034" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Cargo" order="11" />
     </layout>
     <layout-to-restore>
       <window_info id="Designer" order="0" />
       <window_info anchor="right" id="Palette" order="7" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.43779528" />
       <window_info id="Image Layers" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.43779528" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="9" weight="0.25" />
       <window_info anchor="right" id="Cargo" order="0" weight="0.3296875" />
@@ -382,10 +451,10 @@
       <window_info anchor="right" id="Commander" order="8" weight="0.4" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32913387" />
-      <window_info anchor="bottom" id="Statistic" order="2" weight="0.32598424" />
+      <window_info anchor="bottom" id="Statistic" order="2" weight="0.32440946" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.7322835" />
       <window_info anchor="right" id="Maven Projects" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.26171875" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -396,41 +465,85 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="6" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="All opcodes implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="All opcodes implemented" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>y != 0</expression-string>
+        <language-id>Rust</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Cargo.toml">
+    <entry file="file://$PROJECT_DIR$/src/screen.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cpu.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="40" lean-forward="true" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        <state relative-caret-position="645">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/opcodes.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+        <state relative-caret-position="405">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpu.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+          <folding>
+            <element signature="e#5452#5453#0" expanded="true" />
+            <element signature="e#5499#5500#0" expanded="true" />
+            <element signature="e#5641#5642#0" expanded="true" />
+            <element signature="e#5691#5692#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -708,30 +821,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cpu.rs.bk" />
-    <entry file="file://$PROJECT_DIR$/src/screen.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cargo.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/keypad.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/opcodes.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="82" column="37" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -739,20 +828,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libstd/sys_common/backtrace.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        <state relative-caret-position="765">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roms/sources/PONG.SRC">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-807" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/opcodes.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screen.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/keypad.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cpu.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        <state relative-caret-position="56">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
           <folding>
-            <element signature="n#test#0" />
+            <element signature="e#5452#5453#0" expanded="true" />
+            <element signature="e#5499#5500#0" expanded="true" />
+            <element signature="e#5641#5642#0" expanded="true" />
+            <element signature="e#5691#5692#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="58" column="8" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
         </state>
       </provider>
     </entry>
