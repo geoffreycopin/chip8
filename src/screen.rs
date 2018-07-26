@@ -44,21 +44,13 @@ impl Screen {
         self.pixels.iter()
     }
 
-    pub fn turn_on(&mut self, x: usize, y: usize) -> bool {
-        self.set_pixel_value(x, y, true)
-    }
-
-    pub fn turn_off(&mut self, x: usize, y: usize) -> bool {
-        self.set_pixel_value(x, y, false)
-    }
-
     pub fn set_pixel_value(&mut self, x: usize, y: usize, on: bool) -> bool {
         let index = ((y % 32) * 64) + (x % 64);
         if on && self.pixels[index].on  {
             self.pixels[index].on = false;
             return true
         } else {
-            self.pixels[index].on = self.pixels[index].on || on;
+            self.pixels[index].on = on;
             return false
         }
     }
@@ -89,7 +81,7 @@ mod test {
             if random() {
                 for x in 0..64 {
                     let mut screen = Screen::new();
-                    let collision = screen.turn_on(x, y);
+                    let collision = screen.set_pixel_value(x, y, true);
                     let on: Vec<&Pixel> = screen.pixels.iter().filter(|x| x.on()).collect();
                     assert_eq!(false, collision);
                     assert_eq!(1, on.len());
@@ -105,7 +97,7 @@ mod test {
             if random() {
                 for x in 0..64 {
                     let mut screen = all_on_screen();
-                    let collision = screen.turn_off(x, y);
+                    let collision = screen.set_pixel_value(x, y, false);
                     let off: Vec<&Pixel> = screen.pixels.iter().filter(|x| !x.on()).collect();
                     assert_eq!(false, collision);
                     assert_eq!(1, off.len());
@@ -118,16 +110,16 @@ mod test {
     #[test]
     fn turn_on_collision() {
         let mut s = Screen::new();
-        s.turn_on(5, 5);
-        assert!(s.turn_on(5, 5));
+        s.set_pixel_value(5, 5, true);
+        assert!(s.set_pixel_value(5, 5, true));
     }
 
     #[test]
     fn clear() {
         let mut s = Screen::new();
-        s.turn_on(17, 21);
-        s.turn_on(63, 31);
-        s.turn_on(0, 0);
+        s.set_pixel_value(17, 21, true);
+        s.set_pixel_value(63, 31, true);
+        s.set_pixel_value(0, 0, true);
         s.clear();
         for p in s.pixels.iter() {
             assert!(!p.on)
@@ -138,7 +130,7 @@ mod test {
         let mut s = Screen::new();
         for y in 0..32 {
             for x in 0..64 {
-                s.turn_on(x, y);
+                s.set_pixel_value(x, y, true);
             }
         }
         s

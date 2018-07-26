@@ -1,12 +1,12 @@
 use sdl2::keyboard::Scancode;
 
 use std::{
-    collections::{HashMap, HashSet}, iter::FromIterator,
+    collections::{HashMap}
 };
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct KeyPad {
-    pressed: HashSet<u8>,
+    pressed: [bool; 16],
     maping: HashMap<Scancode, u8>,
 }
 
@@ -34,22 +34,31 @@ impl KeyPad {
         KeyPad::with_maping(maping).unwrap()
     }
 
-    pub fn with_maping(mut maping: HashMap<Scancode, u8>) -> Option<KeyPad> {
+    pub fn with_maping(maping: HashMap<Scancode, u8>) -> Option<KeyPad> {
         if maping.values().any(|code| *code > 0xF) {
             return None;
         }
-        Some(KeyPad { maping, pressed: HashSet::new() })
-    }
-
-    pub fn update<T: Iterator<Item = Scancode>>(&mut self, pressed: T) {
-        self.pressed = pressed
-            .filter_map(|code| self.maping.get(&code))
-            .cloned()
-            .collect();
+        Some(KeyPad { maping, pressed: [false; 16] })
     }
 
     pub fn is_pressed(&self, num: u8) -> bool {
-        self.pressed.contains(&num)
+        if num > 0xF {
+            false
+        } else  {
+            self.pressed[num as usize]
+        }
+    }
+
+    pub fn key_down(&mut self, scancode: Scancode) {
+        if let Some(&code) = self.maping.get(&scancode) {
+            self.pressed[code as usize] = true;
+        }
+    }
+
+    pub fn key_up(&mut self, scancode: Scancode) {
+        if let Some(&code) = self.maping.get(&scancode) {
+            self.pressed[code as usize] = false;
+        }
     }
 }
 
@@ -64,15 +73,18 @@ mod test {
     }
 
     #[test]
-    fn update() {
+    fn key_down() {
         let mut pad = KeyPad::new();
-        pad.update(vec![Scancode::Num1, Scancode::Z].into_iter());
-        for i in 0..16 {
-            if i == 1 || i == 5 {
-                assert!(pad.is_pressed(i));
-            } else {
-                assert!(! pad.is_pressed(i))
-            }
-        }
+        assert_eq!(false, pad.is_pressed(1));
+        pad.key_down(Scancode::Num1);
+        assert!(pad.is_pressed(1));
+    }
+
+    #[test]
+    fn key_up() {
+        let mut pad = KeyPad::new();
+        pad.key_down(Scancode::Num1);
+        pad.key_up(Scancode::Num1);
+        assert_eq!(false, pad.is_pressed(1));
     }
 }

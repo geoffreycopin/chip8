@@ -88,7 +88,6 @@ impl Cpu {
     }
 
     fn compute_op(&mut self, op: Op, key_pad: &KeyPad) {
-        eprintln!("op = {:#?}", op);
         match op {
             Op::Cls => self.screen.clear(),
             Op::Ret => self.return_from_subroutine(),
@@ -124,7 +123,6 @@ impl Cpu {
             Op::LdBCD(reg) => self.load_bcd(reg),
             Op::LdRegs(x) => self.load_registers(x),
             Op::RdMem(x) => self.read_memory(x),
-            _ => panic!("Not supported !")
         }
     }
 
@@ -242,7 +240,7 @@ impl Cpu {
                 if screen_x < 64 && screen_y < 32 {
                     let on = (byte & (128 >> offset)) != 0;
                     if self.screen.set_pixel_value(screen_x, screen_y, on) {
-                        //self.v[0xF] = 1;
+                        self.v[0xF] = 1;
                     }
                 }
             }
@@ -364,7 +362,7 @@ mod test {
     fn load_program() {
         let program = [0x00, 0xE0, 0x00, 0xEE];
         let mut cpu = Cpu::new();
-        cpu.load_program(&program);
+        cpu.load_program(&program).unwrap();
         assert_eq!(0x00, cpu.memory[0x200]);
         assert_eq!(0xE0, cpu.memory[0x201]);
         assert_eq!(0x00, cpu.memory[0x202]);
@@ -375,7 +373,7 @@ mod test {
     fn read_opcode() {
         let program = [0x00, 0xE0, 0x00, 0xEE];
         let mut cpu = Cpu::new();
-        cpu.load_program(&program);
+        cpu.load_program(&program).unwrap();
         let op = cpu.fetch_opcode();
         assert_eq!(Op::Cls, op);
     }
@@ -663,7 +661,7 @@ mod test {
     fn skp() {
         let mut cpu = Cpu::new();
         let mut pad = KeyPad::new();
-        pad.update(vec![Scancode::X].into_iter());
+        pad.key_down(Scancode::X);
         cpu.compute_op(Op::Skp(0), &pad);
         assert_eq!(0x202, cpu.pc)
     }
@@ -672,7 +670,7 @@ mod test {
     fn skp_not_pressed() {
         let mut cpu = Cpu::new();
         let mut pad = KeyPad::new();
-        pad.update(vec![Scancode::X].into_iter());
+        pad.key_down(Scancode::X);
         cpu.compute_op(Op::Skp(1), &pad);
         assert_eq!(0x200, cpu.pc)
     }
@@ -681,7 +679,7 @@ mod test {
     fn sknp() {
         let mut cpu = Cpu::new();
         let mut pad = KeyPad::new();
-        pad.update(vec![Scancode::X].into_iter());
+        pad.key_down(Scancode::X);
         cpu.compute_op(Op::Sknp(1), &pad);
         assert_eq!(0x202, cpu.pc)
     }
@@ -690,7 +688,7 @@ mod test {
     fn skp_pressed() {
         let mut cpu = Cpu::new();
         let mut pad = KeyPad::new();
-        pad.update(vec![Scancode::X].into_iter());
+        pad.key_down(Scancode::X);
         cpu.compute_op(Op::Sknp(0), &pad);
         assert_eq!(0x200, cpu.pc)
     }
@@ -713,7 +711,7 @@ mod test {
         cpu.pc += 2;
         assert_eq!(0x200, cpu.pc);
         assert_eq!(0, cpu.v[5]);
-        kb.update(vec![Scancode::W].into_iter());
+        kb.key_down(Scancode::W);
         cpu.compute_op(Op::LdKb(5), &kb);
         // simulate pc update during full cycle
         cpu.pc += 2;

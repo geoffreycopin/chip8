@@ -6,16 +6,19 @@ mod keypad;
 mod opcodes;
 mod screen;
 
-use sdl2::{event::Event, rect, render::Canvas, video::Window, keyboard::KeyboardState};
-
 use screen::Screen;
 
 use std::{
     io::prelude::*,
     fs::File,
-    thread::sleep,
+    env,
     time::Duration,
+    thread::sleep
 };
+
+
+use sdl2::{event::Event, rect, render::Canvas, video::Window};
+
 
 fn main() -> std::io::Result<()> {
     let sdl_context = sdl2::init().unwrap();
@@ -30,33 +33,40 @@ fn main() -> std::io::Result<()> {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
-    let mut rom = File::open("roms/pong.rom")?;
+    let rom_name = env::args().nth(1)
+        .expect("usage: ./chip8_emulator <rom_name>");
+    let mut rom = File::open(&rom_name)?;
     let mut rom_data = [0u8; 3584];
-    rom.read(&mut rom_data);
+    rom.read(&mut rom_data)
+        .expect("Error while reading the ROM file !");
 
     let mut c = cpu::Cpu::new();
-    c.load_program(&rom_data);
+    c.load_program(&rom_data)
+        .expect("Error while loading the ROM !");
 
     let mut k = keypad::KeyPad::new();
 
     let mut event_pump = sdl_context.event_pump().unwrap();
     'running: loop {
-        k.update(KeyboardState::new(&event_pump).pressed_scancodes());
-
-        c.cycle(&keypad::KeyPad::new());
-        c.cycle(&keypad::KeyPad::new());
-        c.cycle(&keypad::KeyPad::new());
-        c.cycle(&keypad::KeyPad::new());
+        c.cycle(&k);
+        c.cycle(&k);
+        c.cycle(&k);
+        c.cycle(&k);
         c.update_timers();
+
         draw_screen(&mut canvas, &c.screen);
         canvas.present();
+
         for event in event_pump.poll_iter() {
             match event {
                 Event::Quit { .. } => break 'running,
+                Event::KeyDown {scancode: s, ..} => if let Some(key) = s { k.key_down(key) },
+                Event::KeyUp {scancode: s, ..} => if let Some(key) = s { k .key_up(key) },
                 _ => (),
             }
         }
-        sleep(Duration::from_millis(16));
+
+        sleep(Duration::from_millis(10))
     }
 
     Ok(())
